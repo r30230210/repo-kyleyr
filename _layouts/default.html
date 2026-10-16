@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+{% if page.title %}{% assign page_title = page.title %}{% else %}{% assign page_title = page.name | remove: '.md' | replace: '_', ' ' | replace: '-', ' ' %}{% endif %}
+{% if page.description %}{% assign page_desc = page.description %}{% else %}{% assign page_desc = page.content | strip_html | strip_newlines | truncate: 120, '' %}{% endif %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page_title }} - {{ site.title }}</title>
+<meta name="description" content="{{ page_desc }}">
+<link rel="canonical" href="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+<meta name="applicable-device" content="pc,mobile">
+<meta name="mobile-agent" content="format=xhtml; url=https://r30230210.github.io/repo-kyleyr/">
+<meta name="mobile-agent" content="format=html5; url=https://r30230210.github.io/repo-kyleyr/">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta name="renderer" content="webkit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url }}">
+<script type="application/ld+json">
+{{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ page_title }}",
+  "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}"
+}}
+</script>
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    bp.src = curProtocol === 'https'
+        ? 'https://zz.bdstatic.com/linksubmit/push.js'
+        : 'http://push.zhanzhang.baidu.com/push.js';
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+</head>
+<body>
+<nav class="breadcrumb"><a href="{{ '/' | prepend: site.baseurl }}">{{ site.title }}</a> &gt; <span>{{ page_title }}</span></nav>
+<main>{{ content }}</main>
+{% if page.previous or page.next %}
+<nav class="post-nav">
+{% if page.previous %}<span>&laquo; <a href="{{ page.previous.url | prepend: site.baseurl }}">{{ page.previous.title | default: page.previous.url }}</a></span>{% endif %}
+{% if page.next %}<span><a href="{{ page.next.url | prepend: site.baseurl }}">{{ page.next.title | default: page.next.url }}</a> &raquo;</span>{% endif %}
+</nav>
+{% endif %}
+</body>
+</html>
