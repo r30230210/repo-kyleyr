@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://r30230210.github.io/repo-kyleyr/sitemap.xml
+# Atom Feed: https://r30230210.github.io/repo-kyleyr/feed.xml
